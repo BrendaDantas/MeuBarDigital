@@ -11,8 +11,10 @@ package meubardigital.service;
 * */
 
 import meubardigital.model.Drink;
+import meubardigital.model.TipoDrink;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class DrinkManager {
@@ -32,9 +34,9 @@ public class DrinkManager {
         if (listaDeDrinks.isEmpty()) {
             System.out.println("Nenhum drink cadastrado.");
         } else {
-            for (Drink d : listaDeDrinks) {
-                System.out.println(d);
-            }
+            listaDeDrinks.stream()
+                    .sorted(Comparator.comparing(Drink::getNome))
+                    .forEach(System.out::println);
         }
     }
 

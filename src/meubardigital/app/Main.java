@@ -31,8 +31,14 @@ public class Main {
             System.out.println("4. Remover drink");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+
+            String entrada = scanner.nextLine();
+            try {
+                opcao = Integer.parseInt(entrada); //tenta converter o texto lido para número
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada inválida! Digite apenas números.");
+                continue;
+            }
 
             switch (opcao) {
                 case 1:
@@ -54,9 +60,22 @@ public class Main {
                     for (TipoDrink tipo : TipoDrink.values()) {
                         System.out.println("- " + tipo);
                     }
-                    System.out.println("Escolha o tipo: ");
-                    String tipoString = scanner.nextLine().toUpperCase();
-                    TipoDrink tipo = TipoDrink.valueOf(tipoString);
+
+                    TipoDrink tipo = null;
+                    boolean tipoValido = false;
+
+                    do {
+                        System.out.println("Escolha o tipo: ");
+                        String tipoStr = scanner.nextLine().toUpperCase();
+
+                        try {
+                            tipo = TipoDrink.valueOf(tipoStr);
+                            tipoValido = true;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Tipo inválido");
+                        }
+
+                    } while (!tipoValido);
 
                     Drink novoDrink = new Drink(nome, ingredientes, modoPreparo, tipo);
                     drinkManager.adicionarDrink(novoDrink);

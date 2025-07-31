@@ -49,6 +49,13 @@ public class DrinkManager {
         return null;
     }
 
+    public List<Drink> buscarPorNomeIncompleto(String parteDoNome) {
+        return listaDeDrinks.stream()
+                .filter(d -> d.getNome().toLowerCase().contains(parteDoNome.toLowerCase()))
+                .sorted(Comparator.comparing(Drink::getNome))
+                .toList();
+    }
+
     public boolean removerDrink(String nome) {
         Drink drinkEncontrado = buscaDrinkPorNome(nome);
         if (drinkEncontrado != null) {

@@ -29,6 +29,7 @@ public class Main {
             System.out.println("2. Listar drinks");
             System.out.println("3. Buscar drink pelo nome");
             System.out.println("4. Remover drink");
+            System.out.println("5. Buscar drink por uma parte do nome");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -101,6 +102,19 @@ public class Main {
                     System.out.print("Digite o nome do drink que deseja remover: ");
                     String nomeRemover = scanner.nextLine();
                     drinkManager.removerDrink(nomeRemover);
+                    break;
+
+                case 5:
+                    System.out.print("Digite parte do nome: ");
+                    String parteDoNome = scanner.nextLine();
+                    List<Drink> encontrados = drinkManager.buscarPorNomeIncompleto(parteDoNome);
+
+                    if (encontrados.isEmpty()) {
+                        System.out.println("Nenhum drink encontrado.");
+                    } else {
+                        System.out.println("Drinks encontrados:");
+                        encontrados.forEach(System.out::println);
+                    }
                     break;
 
                 case 0:

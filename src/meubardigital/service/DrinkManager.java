@@ -22,11 +22,12 @@ public class DrinkManager {
     private List<Drink> listaDeDrinks;
 
     public DrinkManager() {
-        this.listaDeDrinks = new ArrayList<>();
+        this.listaDeDrinks = DrinkStorage.carregarDrinks();
     }
 
     public void adicionarDrink(Drink drink) {
         listaDeDrinks.add(drink);
+        DrinkStorage.salvarDrinks(listaDeDrinks);
         System.out.println("Drink adicionado com sucesso!");
     }
 
@@ -60,10 +61,11 @@ public class DrinkManager {
         Drink drinkEncontrado = buscaDrinkPorNome(nome);
         if (drinkEncontrado != null) {
             listaDeDrinks.remove(drinkEncontrado);
+            DrinkStorage.salvarDrinks(listaDeDrinks);
             System.out.println("Drink removido com sucesso!");
             return true;
         } else {
-            System.out.println("Drink não encontrado");
+            System.out.println("Drink não encontrado.");
             return false;
         }
     }

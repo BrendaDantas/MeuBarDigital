@@ -29,5 +29,29 @@ public class DrinkStorage {
         }
     }
 
-    
+    // Carrega todos os drinks do arquivo e retorna a lista de drinks a ser apresentada quando o programa começa
+    public static List<Drink> carregarDrinks() {
+        List<Drink> drinks = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVO))) {
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                String[] partes = linha.split(";");
+                if (partes.length == 4) {
+                    String nome = partes[0];
+                    List<String> ingredientes = Arrays.asList(partes[1].split(","));
+                    String modoPreparo = partes[2];
+                    TipoDrink tipo = TipoDrink.valueOf(partes[3].toUpperCase());
+
+                    drinks.add(new Drink(nome, ingredientes, modoPreparo, tipo));
+                }
+            }
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar drinks: "  + e.getMessage());
+        }
+
+        return drinks;
+    }
 }

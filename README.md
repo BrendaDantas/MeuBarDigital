@@ -8,9 +8,10 @@
 ## Funcionalidades
 - Cadastrar receitas de drinks
 - Listar todas as receitas 
-- Buscar drinks pelo nome
+- Buscar drinks pelo nome (nome exato ou parcial)
 - Remover drinks do sistema
 - Classificar por tipo (alcoólico, sem álcool, etc.)
+- Persistência de dados: osdrinks são salvos em arquivo '.txt' e carregados automaticamente ao iniciar o programa
 ---
 
 ## Tecnologias Utilizadas
@@ -18,3 +19,7 @@
 - IntelliJ IDEA
 - Git e GitHub
 ---
+
+## Progresso do Projeto
+- Fase 1: funcionalidade básicas
+- Fase 2: persistência de dados com arquivo '.txt'

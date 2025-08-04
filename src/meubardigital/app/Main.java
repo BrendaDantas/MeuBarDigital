@@ -94,7 +94,7 @@ public class Main {
                     if (encontrado != null) {
                         System.out.println(encontrado);
                     } else {
-                        System.out.println("Drink não encontrado");
+                        System.out.println("Drink não encontrado.");
                     }
                     break;
 
